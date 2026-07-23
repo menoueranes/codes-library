@@ -3,7 +3,6 @@ int main(){
     int coofecients[]={6,5,5,3,3,3,1,1,1,1,1}; 
     char *modules[]={"analysis","physics","chemistry","algebra","computer_science","statistics","technical_drawing","french","english","economics","human_engineering"};
     float avg_s1=0,avg_s2=0,AVG,score[11],exam_marks[11],control_marks[11];
-    int Semester,i=0,done=1;
  printf("***welcome to the average calculator for 1st year preparatory school here you will know if you are good or cooked***\n\n\n");
 
            printf("*welcome to the first semester*\n\n");
