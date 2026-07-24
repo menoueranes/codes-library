@@ -58,4 +58,4 @@ elif avg>16 :
 elif avg>10 :
        print("you have to work more idiot")
 else :
-       print("LOSSER\n you have to wait another year to pass NIGGA")              
+       print("LOSSER\n you have to wait another year to pass NIGGA")             
