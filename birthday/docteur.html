@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Joyeux anniversaire Docteur</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --pink: #d63384;
+      --pink-light: #f58abb;
+      --text: #4a4a4a;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    body {
+      position: relative;
+      color: var(--text);
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(180deg, #fce7f3 0%, #fde8f2 50%, #fdf2f8 100%);
+    }
+
+    .emoji-rain {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .medical-emoji {
+      position: absolute;
+      bottom: -100px;
+      left: var(--x);
+      width: var(--size);
+      height: auto;
+      user-select: none;
+      will-change: transform, opacity;
+      animation: float-up var(--duration) ease-in forwards;
+    }
+
+    @keyframes float-up {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(var(--rotate-start)) scale(0.85);
+      }
+
+      10% {
+        opacity: var(--opacity);
+      }
+
+      50% {
+        transform: translate3d(var(--drift-one), -55vh, 0) rotate(var(--rotate-middle)) scale(1);
+      }
+
+      90% {
+        opacity: var(--opacity);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate3d(var(--drift-two), -125vh, 0) rotate(var(--rotate-end)) scale(0.94);
+      }
+    }
+
+    .page {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 22px max(28px, env(safe-area-inset-bottom));
+      text-align: center;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .page-content {
+      width: min(100%, 680px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-two {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(24px) scale(0.97);
+    }
+
+    body.celebrating .page-one {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-24px) scale(0.97);
+    }
+
+    body.celebrating .page-two {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    .handwritten-title {
+      margin: 0;
+      color: var(--pink);
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(3.5rem, 13vw, 7rem);
+      font-weight: 700;
+      line-height: 0.95;
+      text-shadow: 0 5px 20px rgba(214, 51, 132, 0.14);
+    }
+
+    .tap-hint {
+      margin: 18px 0 12px;
+      color: #9b5d78;
+      font-size: clamp(0.82rem, 3.5vw, 1rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .cake-wrap {
+      width: min(48vw, 250px);
+      margin: 5px 0 24px;
+      filter: drop-shadow(0 18px 16px rgba(214, 51, 132, 0.18));
+      animation: cake-float 3.4s ease-in-out infinite;
+    }
+
+    .cake-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    @keyframes cake-float {
+      0%,
+      100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-13px) rotate(2deg);
+      }
+    }
+
+    .blow-button {
+      padding: 15px 31px;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      cursor: pointer;
+      background: linear-gradient(135deg, #f05a9d, #d63384);
+      box-shadow: 0 12px 25px rgba(214, 51, 132, 0.3);
+      font-family: "Poppins", sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .blow-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(214, 51, 132, 0.38);
+    }
+
+    .blow-button:active {
+      transform: translateY(1px) scale(0.97);
+    }
+
+    .doctor-title {
+      margin: 0;
+      color: #8f275a;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 8.3vw, 4.7rem);
+      font-weight: 700;
+      line-height: 1.13;
+      letter-spacing: 0.025em;
+      text-shadow: 0 5px 18px rgba(143, 39, 90, 0.1);
+    }
+
+    .subtitle {
+      max-width: 590px;
+      margin: 25px auto 0;
+      color: #715565;
+      font-size: clamp(0.9rem, 3.8vw, 1.12rem);
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    @media (max-height: 620px) {
+      .cake-wrap {
+        width: min(36vw, 180px);
+        margin-bottom: 15px;
+      }
+
+      .tap-hint {
+        margin: 8px 0;
+      }
+
+      .subtitle {
+        margin-top: 16px;
+        line-height: 1.55;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page,
+      .cake-wrap,
+      .medical-emoji {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="emoji-rain" id="emojiRain" aria-hidden="true"></div>
+
+  <main class="page page-one">
+    <div class="page-content">
+      <h1 class="handwritten-title">Make a wish ! </h1>
+      
+
+      <div class="cake-wrap">
+        <img
+          src="https://em-content.zobj.net/source/apple/354/birthday-cake_1f382.png"
+          alt="Gâteau d'anniversaire"
+        />
+      </div>
+
+      <button class="blow-button" id="blowButton" type="button">
+        Souffler 💨
+      </button>
+    </div>
+  </main>
+
+  <section class="page page-two" aria-live="polite">
+    <div class="page-content">
+      <h1 class="doctor-title">JOYEUX ANNIVERSAIRE<br />DOCTEUR 🎉</h1>
+
+      <p class="subtitle">
+        "Ahlem ! Que cette année t'apporte tout ce que tu désires santé, réussite,
+        rires, aventures et tous tes rêves devenus réalité 🌸"
+      </p>
+    </div>
+  </section>
+
+  <script>
+    const emojiRain = document.getElementById("emojiRain");
+    const blowButton = document.getElementById("blowButton");
+
+    const medicalEmojiUrls = [
+      "https://em-content.zobj.net/source/apple/354/stethoscope_1fa7a.png",
+      "https://em-content.zobj.net/source/apple/354/lab-coat_1f97c.png",
+      "https://em-content.zobj.net/source/apple/354/woman-health-worker_1f469-200d-2695-fe0f.png"
+    ];
+
+    function randomBetween(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function spawnEmoji(x = null, y = null) {
+      const emoji = document.createElement("img");
+      const isPointerSpawn = x !== null && y !== null;
+
+      emoji.className = "medical-emoji";
+      emoji.src = medicalEmojiUrls[Math.floor(Math.random() * medicalEmojiUrls.length)];
+      emoji.alt = "";
+
+      const size = randomBetween(28, 53);
+      const duration = randomBetween(4, 7);
+
+      const horizontalPosition = isPointerSpawn
+        ? Math.max(0, Math.min(window.innerWidth - size, x - size / 2))
+        : randomBetween(0, window.innerWidth - size);
+
+      emoji.style.setProperty("--x", `${horizontalPosition}px`);
+      emoji.style.setProperty("--size", `${size}px`);
+      emoji.style.setProperty("--duration", `${duration}s`);
+      emoji.style.setProperty("--opacity", randomBetween(0.55, 0.9));
+      emoji.style.setProperty("--drift-one", `${randomBetween(-45, 45)}px`);
+      emoji.style.setProperty("--drift-two", `${randomBetween(-80, 80)}px`);
+      emoji.style.setProperty("--rotate-start", `${randomBetween(-20, 20)}deg`);
+      emoji.style.setProperty("--rotate-middle", `${randomBetween(-90, 90)}deg`);
+      emoji.style.setProperty("--rotate-end", `${randomBetween(-180, 180)}deg`);
+
+      if (isPointerSpawn) {
+        emoji.style.bottom = `${Math.max(-50, window.innerHeight - y - size / 2)}px`;
+      }
+
+      emoji.addEventListener("animationend", () => emoji.remove());
+      emojiRain.appendChild(emoji);
+    }
+
+    setInterval(() => spawnEmoji(), 350);
+
+    document.addEventListener("pointerdown", (event) => {
+      if (event.target.closest(".blow-button")) return;
+      spawnEmoji(event.clientX, event.clientY);
+    });
+
+    blowButton.addEventListener("click", () => {
+      document.body.classList.add("celebrating");
+
+      for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+          spawnEmoji(
+            randomBetween(0, window.innerWidth),
+            randomBetween(window.innerHeight * 0.45, window.innerHeight)
+          );
+        }, i * 80);
+      }
+    });
+  </script>
+</body>
+</html>
