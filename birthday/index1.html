@@ -20,25 +20,16 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html {
-      width: 100%;
-      min-height: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
-      overscroll-behavior-y: auto;
+    html,
+    body {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
     }
 
     body {
       position: relative;
-      width: 100%;
-      min-height: 100vh;
-      min-height: 100svh;
-      min-height: 100dvh;
-      margin: 0;
-      overflow-x: hidden;
-      overflow-y: auto;
-      overscroll-behavior-y: auto;
-      touch-action: pan-y;
       color: var(--text);
       font-family: "Poppins", sans-serif;
       background:
@@ -46,12 +37,6 @@
         radial-gradient(circle at 88% 18%, rgba(246, 168, 205, 0.75) 0%, transparent 25%),
         radial-gradient(circle at 50% 88%, rgba(255, 206, 225, 0.9) 0%, transparent 36%),
         linear-gradient(155deg, #f9cfe2 0%, #f8ddea 43%, #f5cfe0 100%);
-    }
-
-    /* Permet le geste « tirer vers le bas pour actualiser » sur mobile */
-    .pull-refresh-buffer {
-      width: 100%;
-      height: 2px;
     }
 
     body::before,
@@ -128,7 +113,7 @@
     }
 
     .page {
-      position: fixed;
+      position: absolute;
       inset: 0;
       z-index: 2;
       display: flex;
@@ -266,12 +251,11 @@
 </head>
 
 <body>
-  <div class="pull-refresh-buffer" aria-hidden="true"></div>
   <div class="emoji-rain" id="emojiRain" aria-hidden="true"></div>
 
   <main class="page page-one">
     <div class="page-content">
-      <h1 class="handwritten-title">Make a wish ! 🌙</h1>
+      <h1 class="handwritten-title">Make a wish !</h1>
 
       <div class="cake-wrap">
         <img
@@ -291,7 +275,7 @@
       <h1 class="doctor-title">JOYEUX ANNIVERSAIRE<br />DOCTEUR 🎉</h1>
 
       <p class="subtitle">
-        "Ahlem! Que cette année t'apporte tout ce que tu désires santé, réussite,
+        "Ahlem ! Que cette année t'apporte tout ce que tu désires santé, réussite,
         rires, aventures et tous tes rêves devenus réalité 🌸"
       </p>
     </div>
